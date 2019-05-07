@@ -57,6 +57,7 @@ module Bundler
     ].freeze
 
     NUMBER_KEYS = %w[
+      backoff
       jobs
       redirect
       retry
@@ -70,6 +71,7 @@ module Bundler
     ].freeze
 
     DEFAULT_CONFIG = {
+      :backoff => 1,
       :silence_deprecations => false,
       :disable_version_check => true,
       :prefer_patch => false,

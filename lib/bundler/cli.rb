@@ -39,6 +39,7 @@ module Bundler
       end
 
       Bundler.settings.set_command_option_if_given :retry, options[:retry]
+      Bundler.settings.set_command_option_if_given :backoff, options[:backoff]
 
       current_cmd = args.last[:current_command].name
       auto_install if AUTO_INSTALL_CMDS.include?(current_cmd)
@@ -93,6 +94,8 @@ module Bundler
     class_option "no-color", :type => :boolean, :desc => "Disable colorization in output"
     class_option "retry",    :type => :numeric, :aliases => "-r", :banner => "NUM",
                              :desc => "Specify the number of times you wish to attempt network commands"
+    class_option "backoff",  :type => :numeric, :aliases => "-B", :banner => "NUM",
+                             :desc => "Specify the starting duration for the exponential backoff of failed network requests"
     class_option "verbose", :type => :boolean, :desc => "Enable verbose output mode", :aliases => "-V"
 
     def help(cli = nil)
